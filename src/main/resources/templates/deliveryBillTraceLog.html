@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta name="apple-itunes-app" content="app-id=458270120" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="renderer" content="webkit" />
+    <title>云村通物流查询系统</title>
+    <link rel="canonical" href="https://www.kuaidi100.com/sz/index.shtml" />
+    <link rel="shortcut icon" href="https://cdn.kuaidi100.com/favicon.ico" />
+    <link rel="icon" type="image/gif" href="https://cdn.kuaidi100.com/images/favicon.gif" />
+    <link rel="stylesheet" href="https://cdn.kuaidi100.com/css/sz/base_v4.css?version=201801161030" />
+    <link rel="stylesheet" href="https://cdn.kuaidi100.com/css/sz/query_v4.css?version=201712081820" />
+    <link rel="stylesheet" href="https://cdn.kuaidi100.com/css/sz/index_v4.css?version=201712081830" />
+</head>
+<body>
+<input type="hidden" id="headerMenu" value="menu-track" />
+<div class="header">
+    <div class="w960">
+        <div class="logo"><a href="/deliveryBillTraceLog/toDeliveryBillTraceLog" title="查快递，寄快递，上快递100"><img src="/images/logo.jpg" alt="云村通" width="150" height="75" /></a></div>
+        <div class="box"></div>
+    </div>
+</div>
+<div class="hr"></div>
+<div class="search-box" id="searchBox" style="z-index:96;height:0;">
+    <div class="search-absolute">
+        <div class="search-title"></div>
+        <div class="input-box mb10px">
+            <a class="logo-model hidden"></a><a class="btn-default com-logo relative" id="selectComBtn" title="切换快递公司"><i></i><img src="https://cdn.kuaidi100.com/images/sz/default.png" data-code="default"></a><input name="postid" type="text" class="inp-default inp-search" id="postid" placeholder="输入单号，在800+快递公司中为您智能查询" autocomplete="off" value="" maxlength="100"><a id="query" class="btn-default btn-search"></a>
+            <ul class="input-tips hidden" id="inputTips">
+            </ul>
+        </div>
+        <div id="comList" class="select-box hidden">
+            <div class="com-list">
+            </div>
+        </div>
+        <div id="errorTips" class="tips mt10px hidden">
+            <a onclick="$('#errorTips').hide();" class="tips-close" title="关闭提示"></a>
+            <p id="errorMessage"></p>
+        </div>
+        <div id="queryWait" class="loader-box hidden">
+            <div class="global-loading"></div>
+        </div>
+        <div class="query-outline" id="queryResult">
+            <div id="orderPrint" class="hidden">
+                <span id="comName"></span>
+                <span id="companyNum"></span>
+            </div>
+            <div class="query-right hidden" id="queryRight">
+                <div id="kuaidiBoxPC">
+                    <div id="div-gpt-ad-1468542646665-0" class="mb10px">
+                        <script type="text/javascript">var jd_union_unid="1000006703",jd_ad_ids="513:6",jd_union_pid="CNiMmaeqLBCvyOvcAxoAIL2Qu84EKgA=";var jd_width=300;var jd_height=250;var jd_union_euid="";var p="ChUAXBNcFgQTNwpfBkgyTUMIRmtKRk9aZV8ETVxNNwpfBkgyEnQgeVxmd0FiBWESUXtXbxR4QWBGYgtZK1wVChMAVxlSFzISBlQaWhQFFAZXK2tKRk9aZVA1FDJNQwhGaxUGEQVVEl4dBBQCXRJrFDIiNw%3D%3D";</script><script type="text/javascript" charset="utf-8" src="//u-x.jd.com/static/js/auto.js"></script>
+
+                    </div>
+                    <div id="div-gpt-ad-1468542646665-1">
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- AdSense_PC_home -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:300px;height:250px"
+                             data-ad-client="ca-pub-8703497864096994"
+                             data-ad-slot="5818593505"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <i id="resultFlag"></i>
+        </div>
+        <div id="queryPs" class="qr-box hidden">
+            欢迎使用云村通物流查询系统
+            <div class="close-result" id="closeResult">关闭查询结果</div>
+        </div>
+        <div id="notFindTip" class="mt10px notfind hidden">
+            <h4 class="notfind-icon">抱歉，暂无查询记录</h4>
+            <ul class="notfind-ul">
+                <li class="ico_wrong">快递公司识别错误？<br />请重新选择快递公司</li>
+                <li class="ico_right" id="notFindRight">快递公司识别正确？<br /><span id="notFindRight1">请隔段时间再试，或者前往&nbsp;<span id="links"></span>&nbsp;查询试试</span></li>
+            </ul>
+            <div class="box"></div>
+        </div>
+        <div class="miniprogram" id="miniProgram">
+            <a class="close-preCode"></a>
+            <img src="https://cdn.kuaidi100.com/images/miniprogram.jpg" alt="">
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="search-section">
+    <div class="section-bg">
+
+    </div>
+    <div class="section-bg" href="https://www.kuaidi100.com/cloud">
+        <div class="section-item" style="background-image:url(https://cdn.kuaidi100.com/images/sz/sz_bg_index_01.png)"></div>
+        <div class="section-item" style="background-image:url(https://cdn.kuaidi100.com/images/sz/sz_bg_index_02.png"></div>
+        <div class="section-item" style="background-image:url(https://cdn.kuaidi100.com/images/sz/sz_bg_index_03.png?version=20180109"></div>
+    </div>
+</div>
+<div id="expressMap" class="map-wrap hidden">
+    <div class="map-mask"></div>
+    <div class="express-map">
+        <div class="express-header">
+            <input id="search-express" class="header-search" placeholder="搜索">
+            <input id="select-express" type="hidden" value="start-com">
+            <i class="header-close"></i>
+        </div>
+        <ul id="expressList" class="express-list"></ul>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="w960">
+        <div class="foot-link">
+        </div>
+        <ul class="footCpoyright">
+            <li>苏ICP备16002173号-4 南京云田数码科技股份有限公司 版权所有 © 2016</li>
+        </ul>
+        <ul class="valid">
+        </ul>
+        <div class="box"></div>
+    </div>
+</div>
+<script src="https://cdn.kuaidi100.com/js/util/jquery-1.7.1.min.js?version=201707191039"></script>
+<script type="text/javascript">
+
+    $('#closeResult').on('click', function(event) {
+        event.preventDefault();
+        $('#shareBox').hide()
+        $("#queryResult").hide();
+        $("#queryPs").hide();
+    });
+
+    $("#query").click(function(){
+        var postid=$("#postid").val().trim();
+        if(postid==""){
+            $("#comList,#queryPs,#example,#notFindTip").hide();
+            $("#errorMessage").html("请输入快递号!");
+            $("#errorTips").show();
+            return;
+        }
+
+        $.ajax({
+            url:"/deliveryBillTraceLog/getDeliveryTraceLogInfo",
+            type:"post",
+            dataType:"json",
+            data:{
+                postid:postid,
+            },
+            success:function(resultJson){
+                if (resultJson.status == 200) {
+                    $("#queryWait,.logo-model,#sendHistory").hide();
+                    $("#errorTips").hide();
+                    $(".logo-model").hide();
+                    $("#queryWait").hide();
+                    $("#notFindTip").hide();
+                    $("#queryResult .result-wrap").remove();
+                    showResult(resultJson,"1");
+                    $("#example").hide();
+                    $("#shareBox,#shareBtn,#queryPs").show();
+                    $("#inputTips").hide();
+                }else {
+                    $(".notfind-icon").val(resultJson.message)
+                    $("#errorTips").hide();
+                    $("#notFindTip").show();
+                    $('#shareBox').hide()
+                    $("#queryResult").hide();
+                    $("#queryPs").hide();
+                }
+            }
+        })
+    })
+
+
+    function showResult(data,type){
+        var isInternational = false;
+        var sortType = -1;
+        var html = '',resultData = data.data,ischeck = data.ischeck;
+        var comInfo = new Object();
+        comInfo.name="云村通";
+        var pageUrl=encodeURIComponent("https://m.kuaidi100.com/result.jsp?com="+data.com+"&nu="+data.nu+"&ordersource=pc_result&w=90&h=90")
+        var img="https://www.kuaidi100.com/twoCode.do?method=global&&qrcodesize=140&&content="+pageUrl
+        var code = '\
+    <div class="query">\
+    </div>';
+        html = $('<div class="result-wrap" data-name="'+comInfo.name+'" data-nu="'+data.nu+'">\
+    <div class="select-com relative">\
+       '+(!isInternational ? '<span class="single-name">'+comInfo.name+'</span>\
+       ':'<span class="select-name">\
+          <i style="background-image:url(https://cdn.kuaidi100.com/images/all/56/'+data.com+'.png)"></i>\
+          <a>'+comInfo.name+'</a>\
+       </span>')+'\
+       <!--<span class="ico-refresh" title="刷新"></span> -->\
+       <a role="sent-order" href="https://www.postpony.com/usps/discount/kuaidi100?share=kuaidi100" target="_blank" class="mr10px sent-order hidden" rel="nofollow">【美国省钱寄快递】</a>\
+       <span role="timeCost" class="ico-clock hidden"></span>\
+       <span role="arrTime" class="ico-date hidden"></span>\
+    </div>\
+    <div class="relative query-box">\
+       <div class="result-top" id="resultTop"><span class="col1'+(sortType == 1 ? ' col1-down' : '')+'" title="切换排序" role="sort">时间</span><span class="col2">地点和跟踪进度</span></div>\
+       <table class="result-info'+(sortType == 1 ? ' result-info-down' : '')+'" cellspacing="0"></table>\
+    </div></div>');
+        html.data('result',data).prepend(code);
+        var resultTable = html.find("table");
+        isInternational && $('<div class="inner-loading hidden"><img src="https://cdn.kuaidi100.com/images/loading.gif"></div><div class="inner-tip"></div>').insertAfter(resultTable)
+        showTable(resultTable,data);
+
+        if(type == 'autoDest'){
+            html.insertBefore('#resultFlag');
+        } else {
+            html.insertAfter('#resultFlag');
+        }
+        if(isInternational){
+            var text = type == 'autoDest' ? '目的国家' : '发件国家';
+            //html.find('[role=sort]').click()
+            $("<span style='padding-left:4px;'>"+text+'<b title="'+getCoutry(data.com)+'" role="country">'+getCoutry(data.com).slice(0,5)+"</b></span>").insertBefore(html.find('.select-name'))
+        }
+        $("#queryRight,#queryResult").show();
+        if(data.com=="usps"){
+            html.find('[role=sent-order]').show();
+        }else{
+            html.find('[role=sent-order]').hide();
+        }
+        //中通特殊处理
+        if(data.com == 'zhongtong'){
+            html.find("[role=companyService]").show().find("a").attr('href',' http://kefu.jx.zto.com/webim/im.html?tenantId=27801&to=systemkefu18&appKey=ssy%23chat&xmppServer=im-api.jx.zto.com:5280&restServer=a1.jx.zto.com&billCode='+data.nu);
+        } else {
+            html.find("[role=companyService]").hide()
+        }
+    }
+
+
+    function showTable(resultTable, data){
+        var sortType = -1;
+        var resultData = data.data, ischeck = data.ischeck;
+        resultTable.empty();
+        for(var i = 0,len = resultData.length; i < len; i++){
+            var className = "status";
+            if (resultData.length == 1 && ischeck == 0) {
+                className += " status-wait";
+            } else if (resultData.length == 1 && ischeck == 1) {
+                className += " status-check";
+            } else if (i == 0 && ischeck == 0) {
+                className += sortType == -1 ? " status-wait" : " status-first";
+            }
+
+            else {
+                className = "status";
+            }
+            var context = resultData[i].context;
+            var weekDay = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+            var dateStr = resultData[i].time
+            var myDate = new Date(Date.parse(dateStr.replace(/-/g, "/")));
+            var week = (weekDay[myDate.getDay()]);
+            var day = resultData[i].time.substring(0, 10).replace(/-/g, ".");
+            if (i < resultData.length - 1) {
+                var preday = resultData[i + 1].time.substring(0, 10).replace(/-/g, ".");
+            }
+            var time = resultData[i].ftime.substring(11, 16)
+            if (i == 0) {
+                resultTable.append('<tr '+(sortType == -1 ? 'class="last"' : "")+'><td class="row1"><span class="day">' + day + '</span><span class="time">' + time + '</span>&nbsp;<span class="week">' + week + '</span></td><td class="' + className + '">&nbsp;<div class="col2"><span class="step"><span class="line1"></span><span class="line2"></span></span></div></td><td class="contex"t>' + context + '</td></tr>');
+            } else if (i == resultData.length - 1) {
+                resultTable.append('<tr '+(sortType == 1 ? 'class="last"' : "")+'><td class="row1"><span class="day">' + day + '</span><span class="time">' + time + '</span>&nbsp;&nbsp;<span class="week">' + week + '</span></td><td class="' + className + '">&nbsp;</td><td class="context">' + context + "</td></tr>");
+            } else {
+                if (day != preday) {
+                    resultTable.append('<tr><td class="row1"><span class="day">' + day + '</span><span class="time">' + time + '</span>&nbsp;&nbsp;<span class="week">' + week + '</span></td><td class="' + className + '">&nbsp;<div class="col2"><span class="step"><span class="line1"></span><span class="line2"></span></span></div></td><td class="context">' + context + "</td></tr>");
+                } else {
+                    resultTable.append('<tr><td class="row1"><span class="day">' + day + '</span><span class="time">' + time + '</span></td><td class="' + className + '">&nbsp;<div class="col2"><span class="step"><span class="line1"></span><span class="line2"></span></span></div></td><td class="context">' + context + "</td></tr>");
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

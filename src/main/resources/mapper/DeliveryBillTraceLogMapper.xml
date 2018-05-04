@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.example.demo.mapper.DeliveryBillTraceLogMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.bean.DeliveryBillTraceLogInfo">
+        <result column="LOG_CONTENT" property="context" />
+        <result column="CREATE_TIME" property="ftime" />
+        <result column="LOG_CONTENT" property="location" />
+        <result column="CREATE_TIME" property="time" />
+        <result column="DELIVERY_CODE" property="courierNo" />
+
+    </resultMap>
+
+
+
+    <select id="getInDeliveryBillTraceLogInfoList" resultMap="BaseResultMap" parameterType="java.util.Map">
+      SELECT
+	     dbt.LOG_CONTENT, dbt.CREATE_TIME,idb.DELIVERY_CODE
+      FROM
+	    dms_in_delivery_bill idb
+      LEFT JOIN
+        dms_delivery_bill_trace_log dbt
+      ON
+        idb.ID = dbt.DELIVERY_BILL_ID
+      WHERE
+	    idb.DELIVERY_CODE = #{deliveryCode} AND dbt.IN_OR_OUT=#{inOrOut} order by dbt.CREATE_TIME
+    </select>
+
+
+
+    <select id="getOutDeliveryBillTraceLogInfoList" resultMap="BaseResultMap" parameterType="java.util.Map">
+        SELECT
+        dbt.LOG_CONTENT, dbt.CREATE_TIME,odb.DELIVERY_CODE
+        FROM
+        dms_out_delivery_bill odb
+        LEFT JOIN
+        dms_delivery_bill_trace_log dbt
+        ON
+        odb.ID = dbt.DELIVERY_BILL_ID
+        WHERE
+        odb.DELIVERY_CODE = #{deliveryCode} AND dbt.IN_OR_OUT=#{inOrOut} order by dbt.CREATE_TIME
+    </select>
+</mapper>
