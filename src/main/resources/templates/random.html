@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta name="apple-itunes-app" content="app-id=458270120" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="renderer" content="webkit" />
+    <title>夏微微是个大SB</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="carousel slide" id="carousel-58996">
+                <ol class="carousel-indicators">
+                    <li class="active" data-slide-to="0" data-target="#carousel-58996">
+                    </li>
+                    <li data-slide-to="1" data-target="#carousel-58996">
+                    </li>
+                    <li data-slide-to="2" data-target="#carousel-58996">
+                    </li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img alt=""  src="/images/1.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                First Thumbnail label
+                            </h4>
+                            <p>
+                                夏薇薇嘴巴大!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="" src="/images/2.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                Second Thumbnail label
+                            </h4>
+                            <p>
+                                夏薇薇胸小!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="" src="/images/3.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                Third Thumbnail label
+                            </h4>
+                            <p>
+                                夏薇薇头尖!
+                            </p>
+                        </div>
+                    </div>
+                </div> <a class="left carousel-control" href="#carousel-58996" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-58996" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+            <h3 class="text-center">
+                大粗腿夏薇薇!!!!!!!!
+            </h3>
+            <form role="form">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">请输入随机金额下限:</label><input type="email" class="form-control" id="exampleInputEmail1" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">请输入随机金额上限</label><input type="text" class="form-control" id="exampleInputPassword1" />
+                </div>
+                <div class="checkbox">
+                </div> <button type="button" id="button" class="btn btn-default">Submit</button>
+            </form>
+            <div id="xww" class="alert alert-dismissable alert-danger" style="display: none">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                <h4>
+                    注意!
+                </h4>
+                <strong>Warning!</strong>
+                <span>Best check yo self, you're not looking too good.</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" id="content" onclick="alert('正在泡妞中......')" class="alert-link">有何人问题请点击联系大帅哥</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.kuaidi100.com/js/util/jquery-1.7.1.min.js?version=201707191039"></script>
+<script type="application/javascript">
+    $(function(){
+        $("#button").on('click',function(){
+            var minnum=$("#exampleInputEmail1").val();
+            var maxnum=$("#exampleInputPassword1").val();
+            if(minnum>5){
+                $("#xww").hide();
+                $("#xww").find('span').text("贪心鬼!下限金额太大了!");
+                $("#xww").show();
+                return;
+            }
+            if(maxnum>10){
+                $("#xww").hide();
+                $("#xww").find('span').text("贪心鬼!上限金额太大了!");
+                $("#xww").show();
+                return;
+            }
+
+            var result= Math.floor((Math.random()*maxnum)+minnum);
+            $("#xww").find('h4').text("恭喜你!");
+            $("#xww").find('span').text("获得红包:"+result);
+            $("#xww").show();
+        })
+
+
+        $("")
+    })
+
+</script>
+</body>
+</html>
