@@ -25,7 +25,7 @@
       ON
         idb.ID = dbt.DELIVERY_BILL_ID
       WHERE
-	    idb.DELIVERY_CODE = #{deliveryCode} AND dbt.IN_OR_OUT=#{inOrOut} order by dbt.CREATE_TIME
+	    idb.DELIVERY_CODE1 = #{deliveryCode} AND dbt.IN_OR_OUT=#{inOrOut} order by dbt.CREATE_TIME DESC
     </select>
 
 
@@ -40,6 +40,6 @@
         ON
         odb.ID = dbt.DELIVERY_BILL_ID
         WHERE
-        odb.DELIVERY_CODE = #{deliveryCode} AND dbt.IN_OR_OUT=#{inOrOut} order by dbt.CREATE_TIME
+        odb.DELIVERY_CODE = #{deliveryCode} AND dbt.IN_OR_OUT=#{inOrOut} order by dbt.CREATE_TIME ASC
     </select>
 </mapper>

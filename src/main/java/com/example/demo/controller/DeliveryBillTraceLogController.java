@@ -14,14 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 @Controller
-@RequestMapping("/deliveryBillTraceLog")
 public class DeliveryBillTraceLogController {
 
     @Autowired
     private DeliveryBillTraceLogService deliveryBillTraceLogService;
 
 
-    @RequestMapping("/toDeliveryBillTraceLog")
+    @RequestMapping("/")
     public ModelAndView toLogistics(){
         ModelAndView mv=new ModelAndView();
         mv.setViewName("deliveryBillTraceLog");

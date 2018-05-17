@@ -58,21 +58,39 @@ public class DeliveryBillTraceLogServiceImpl  implements DeliveryBillTraceLogSer
         List<DeliveryBillTraceLogInfo> deliveryBillTraceLogMapperList=new ArrayList<>();
         Map map=new HashMap<>();
         map.put("deliveryCode",deliveryCode);
-        map.put("inOrOut","1");//运单信息
-        deliveryBillTraceLogMapperList=  deliveryBillTraceLogMapper.getInDeliveryBillTraceLogInfoList(map);
-        if(deliveryBillTraceLogMapperList!=null&&deliveryBillTraceLogMapperList.size()>0){
+
+        //判断是否已字母开头
+        if((int)deliveryCode.charAt(0)>=65 && (int)deliveryCode.charAt(0)<=90){
+            map.put("inOrOut","1");//运单信息
+            deliveryBillTraceLogMapperList=  deliveryBillTraceLogMapper.getInDeliveryBillTraceLogInfoList(map);
             result.setData(deliveryBillTraceLogMapperList);
-        }else {
+        }else {//寄件单
             map.put("inOrOut","2");//寄件单信息
             deliveryBillTraceLogMapperList=  deliveryBillTraceLogMapper.getOutDeliveryBillTraceLogInfoList(map);
             if(deliveryBillTraceLogMapperList!=null&&deliveryBillTraceLogMapperList.size()>0){
                 result.setData(getKuaiDiLogInfo(deliveryBillTraceLogMapperList,deliveryBillTraceLogMapperList.get(0).getCourierNo()));
-
-            }else {
-                result.setMessage("暂无信息");
-                result.setStatus("500");
             }
         }
+        if(deliveryBillTraceLogMapperList==null||deliveryBillTraceLogMapperList.size()==0){
+            result.setMessage("暂无信息");
+            result.setStatus("500");
+        }
+
+
+//        deliveryBillTraceLogMapperList=  deliveryBillTraceLogMapper.getInDeliveryBillTraceLogInfoList(map);
+//        if(deliveryBillTraceLogMapperList!=null&&deliveryBillTraceLogMapperList.size()>0){
+//            result.setData(deliveryBillTraceLogMapperList);
+//        }else {
+//            map.put("inOrOut","2");//寄件单信息
+//            deliveryBillTraceLogMapperList=  deliveryBillTraceLogMapper.getOutDeliveryBillTraceLogInfoList(map);
+//            if(deliveryBillTraceLogMapperList!=null&&deliveryBillTraceLogMapperList.size()>0){
+//                result.setData(getKuaiDiLogInfo(deliveryBillTraceLogMapperList,deliveryBillTraceLogMapperList.get(0).getCourierNo()));
+//
+//            }else {
+//                result.setMessage("暂无信息");
+//                result.setStatus("500");
+//            }
+//        }
         return   result;
     }
 
