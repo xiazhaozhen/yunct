@@ -63,13 +63,12 @@ public class DeliveryBillTraceLogServiceImpl  implements DeliveryBillTraceLogSer
         if((int)deliveryCode.charAt(0)>=65 && (int)deliveryCode.charAt(0)<=90){
             map.put("inOrOut","1");//运单信息
             deliveryBillTraceLogMapperList=  deliveryBillTraceLogMapper.getInDeliveryBillTraceLogInfoList(map);
-            result.setData(deliveryBillTraceLogMapperList);
         }else {//寄件单
             map.put("inOrOut","2");//寄件单信息
             deliveryBillTraceLogMapperList=  deliveryBillTraceLogMapper.getOutDeliveryBillTraceLogInfoList(map);
-            if(deliveryBillTraceLogMapperList!=null&&deliveryBillTraceLogMapperList.size()>0){
-                result.setData(getKuaiDiLogInfo(deliveryBillTraceLogMapperList,deliveryBillTraceLogMapperList.get(0).getCourierNo()));
-            }
+        }
+        if(deliveryBillTraceLogMapperList!=null&&deliveryBillTraceLogMapperList.size()>0){
+            result.setData(getKuaiDiLogInfo(deliveryBillTraceLogMapperList,deliveryBillTraceLogMapperList.get(0).getCourierNo()));
         }
         if(deliveryBillTraceLogMapperList==null||deliveryBillTraceLogMapperList.size()==0){
             result.setMessage("暂无信息");
